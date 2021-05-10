@@ -23,8 +23,6 @@ services:
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    ports:
-      - "5431:5432"
     expose:
       - 5432
     environment:
