@@ -1,0 +1,9 @@
+textarea {
+  border-radius: 10px;
+  border-color: grey;
+  width: 100%;
+}
+
+textarea:focus {
+  outline: none;
+}

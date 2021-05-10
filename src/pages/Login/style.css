@@ -1,0 +1,9 @@
+.login-page-inner {
+  width: 320px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.login-page-inner * {
+  width: 100%;
+}

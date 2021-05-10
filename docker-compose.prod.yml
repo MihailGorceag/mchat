@@ -1,0 +1,77 @@
+version: "3.9"
+   
+services:
+  frontend:
+    hostname: frontend
+    image: node:latest
+    container_name: frontend
+    working_dir: /app
+    environment: 
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
+    expose:
+      - 3000
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./:/app
+    networks:
+      - app-network
+    command: bash -c "npm run start"
+    
+
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - app-network
+
+  server:
+    hostname: server
+    image: node:latest
+    container_name: server
+    restart: unless-stopped
+    working_dir: /app
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+    networks:
+      - app-network
+    links:
+      - "db:db"
+    depends_on:
+      - db
+    command: bash -c "npm run startbe"
+    networks:
+      - app-network
+  
+  nginx:
+    image: nginx:1.19
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    links:
+      - "server:server"
+      - "frontend:frontend"
+    networks:
+      - app-network
+    volumes:
+      - "./nginx/conf.prod.d:/etc/nginx/conf.d"
+    logging:
+      driver: none
+
+networks:
+  app-network:
+    driver: bridge
