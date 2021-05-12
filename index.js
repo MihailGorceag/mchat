@@ -23,7 +23,7 @@ const main = async () => {
   await client.connect()
 
   await client.query(`
-  CREATE TABLE Users (
+  CREATE TABLE "Users" (
     id  SERIAL PRIMARY KEY,
     nickname varchar(255),
     email varchar(255),
