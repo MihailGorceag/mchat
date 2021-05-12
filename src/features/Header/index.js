@@ -25,6 +25,7 @@ const Header = () => {
     <div onClick={() => {
       history.push('/')
     }} >
+      <span>M</span>
       <span>C</span>
       <span style={{color: '#0046AE'}} >H</span>
       <span style={{color: '#FFD200'}} >A</span>
