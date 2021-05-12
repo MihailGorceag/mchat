@@ -22,7 +22,7 @@ const client = new Client({
 const main = async () => {
   await client.connect()
 
-  client.query(`
+  await client.query(`
   CREATE TABLE Users (
     id  SERIAL PRIMARY KEY,
     nickname varchar(255),
