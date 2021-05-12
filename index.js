@@ -22,18 +22,6 @@ const client = new Client({
 const main = async () => {
   await client.connect()
 
-  await client.query(`
-  CREATE TABLE "Users" (
-    id  SERIAL PRIMARY KEY,
-    nickname varchar(255),
-    email varchar(255),
-    created DATE default CURRENT_TIMESTAMP,
-    password varchar(255)
-  )
-  `)
-  // const res = await client.query('SELECT * FROM users')
-
-
   
   app.use(bodyParser())
   app.use(cookieParser())

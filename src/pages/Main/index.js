@@ -102,7 +102,8 @@ const Main = () => {
           {userSearchResult.filter(user => user.id !== profile.id).map(user => {
             return <div  style={{
               marginTop: '10px',
-              borderBottom: user.id === selectedUser.id ? '1px solid black' : ''
+              borderBottom: user.id === selectedUser.id ? '1px solid black' : '',
+              width: '98%'
               }} onClick={() => setSelectedUser(user)} >
               {user.email}
             </div>
